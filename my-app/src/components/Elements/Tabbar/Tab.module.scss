@@ -1,0 +1,14 @@
+@use "../../../styles/Common/index" as *;
+.tab {
+  width: 100%;
+  height: 50px;
+  background-color: $secondary-color;
+  color: $text-color-third;
+  box-sizing: border-box;
+  padding-left: 20px;
+  font-weight: 600;
+  @include flex($align-items: center);
+  span {
+    margin-right: 5px;
+  }
+}

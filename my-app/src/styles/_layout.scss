@@ -1,0 +1,28 @@
+@use "Common/index" as *;
+.layout {
+    width: 100%;
+    position: relative;
+    .header {
+        background-color: $primary-color;
+        @include flex($align-items: center, $justify-content: space-between);
+        color: $text-color-secondary;
+        height: 50px;
+        &__left, &__right {
+            ul {
+                @include flex();
+                height: 100%;
+                li {
+                    padding: 0 15px;
+                }
+            }
+        }
+    }
+    .content {
+        box-sizing: border-box;
+        padding: 30px 50px;
+    }
+    .footer {
+        position: absolute;
+        bottom: 0;
+    }
+}

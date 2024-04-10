@@ -1,0 +1,20 @@
+@use "../../styles/Common/index" as *;
+.elementPagination {
+  display: inline-block;
+  height: 40px;
+  margin-top: 10px;
+  border: 1px solid $third-color;
+  .buttonPagination {
+    background-color: transparent;
+    width: auto;
+    color: $third-color;
+    border: 1px solid $third-color;
+    opacity: 0.6;
+    @include buttonSelect()
+  }
+  .selectedPage {
+    color: white;
+    background-color: #337AB7;
+    @include buttonSelect()
+  }
+}

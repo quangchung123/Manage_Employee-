@@ -1,0 +1,18 @@
+@mixin flex($align-items: flex-start , $justify-content: flex-start, $flex-direction: row) {
+  display: flex;
+  align-items: $align-items;
+  justify-content: $justify-content;
+  flex-direction: $flex-direction;
+}
+@mixin buttonSelect() {
+  height: 100%;
+  border-radius: 0;
+  box-sizing: border-box;
+  padding: 0 13px;
+}
+
+@mixin table($table-width) {
+  @media only screen and (max-width:$table-width) {
+    @content;
+  }
+}
