@@ -1,5 +1,4 @@
 import React, {useState} from 'react';
-import MyTab from "../../components/Elements/Tabbar/MyTab";
 import MyLabel from "../../components/Elements/Label/MyLabel";
 import Layout from "../../container/Layout";
 import InputField from "../../components/Elements/Input/InputField";
@@ -7,12 +6,16 @@ import MyButton from "../../components/Elements/Buttons/MyButton";
 import {useStore} from "../../hooks";
 import {editItem} from "../../store/Actions/actions";
 import {useNavigate} from "react-router-dom";
+import Breadcrumbs from "../../components/Elements/Breadcrumbs/Breadcrumbs";
+import styles from "../Styles/CityUpdate.module.scss"
 const CityUpdate = () => {
     const [state, dispatch] = useStore();
     const {data, dataDetail} = state;
+    const {name} = dataDetail[0];
     const initialDataForm = dataDetail.length > 0 ? dataDetail[0] : {};
     const navigate = useNavigate();
     const [dataForm, setDataForm] = useState(initialDataForm);
+    const [crumbs, setCrumbs] = useState(['Home', 'Cities', name, 'Update']);
     const handleChangeValue = (field: string) => (event: any) => {
         setDataForm((prevState: any) => ({
             ...prevState,
@@ -28,11 +31,14 @@ const CityUpdate = () => {
         await dispatch(editItem(payload));
         navigate('/');
     }
+    const onCrumbClick = () => {
+        navigate("/");
+    }
     return (
         <div>
             <Layout>
-                <MyTab />
-                <MyLabel />
+                <Breadcrumbs crumbs={crumbs} onCrumbClick={onCrumbClick}/>
+                <MyLabel nameLabel={'Update City: '} nameCity={name}/>
                 <form>
                     <div>
                         <label>Name</label>
@@ -46,7 +52,7 @@ const CityUpdate = () => {
                         <label>Country</label>
                         <InputField value={dataForm.country} onChange={handleChangeValue('country')}/>
                     </div>
-                    <MyButton onClick={handleSubmit}>
+                    <MyButton onClick={handleSubmit} styleModify={styles.btnSave}>
                         <span>Save</span>
                     </MyButton>
                 </form>

@@ -16,10 +16,9 @@ button {
   font-size: 15px;
   font-weight: 600;
   font-style: normal;
-  border-radius: 4px;
+  border-radius: 1px;
   border: none;
   color: variables.$text-color-secondary;
-  background-color: variables.$button-color;
 }
 button:hover {
   cursor: pointer;

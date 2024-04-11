@@ -1,9 +1,11 @@
 import React from 'react';
 import styles from './Label.module.scss';
-const MyLabel = () => {
+const MyLabel = ({nameLabel, nameCity}: any) => {
+    console.log(nameCity)
     return (
         <div className={styles.label}>
-            <span>Cities</span>
+            <span>{nameLabel}</span>
+            <span>{nameCity}</span>
         </div>
     );
 };

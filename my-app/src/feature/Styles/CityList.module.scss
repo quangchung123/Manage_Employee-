@@ -1,6 +1,8 @@
+@use "../../styles/Common/index" as *;
 .cityList {
   //background-color: red;
   .buttonModify {
-    padding: 10px;
+    background-color: $secondary-button-color;
+    padding: 10px 20px;
   }
 }

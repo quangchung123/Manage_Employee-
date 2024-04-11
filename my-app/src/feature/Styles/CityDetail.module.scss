@@ -1,0 +1,13 @@
+@use "../../styles/Common/index" as *;
+.groupButton {
+  @include flex();
+  .btnEdit {
+    background-color: $text-color-third;
+    padding: 10px 20px;
+    margin-right: 10px;
+  }
+  .btnDelete {
+    background-color: $button-color;
+    padding: 10px 20px;
+  }
+}

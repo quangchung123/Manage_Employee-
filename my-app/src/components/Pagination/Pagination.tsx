@@ -2,7 +2,6 @@ import React from 'react';
 import styles from './Pagination.module.scss'
 
 const Pagination = ({setCurrentPage, pageNumbers,currentPage, totalPage}: any) => {
-    console.log(currentPage)
     const goToPage = (page: number) => {
         setCurrentPage(page);
     };
