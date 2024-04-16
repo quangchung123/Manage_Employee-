@@ -1,8 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import '../src/styles/Common/_base.scss'
-import {StoreProvider} from "./store";
+import '../src/styles/common/_base.scss'
 import App from "./App";
+import {StoreProvider} from "./store";
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement

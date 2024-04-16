@@ -1,10 +1,12 @@
 @use "../../styles/Common/index" as *;
 .cityTable {
   margin-top: 40px;
-  .buttonAction {
+  .btnGroup {
+  }
+  .btnAction {
     background-color: transparent;
     i {
-      color: #337AB7;
+      color: $text-color-third;
     }
   }
 }

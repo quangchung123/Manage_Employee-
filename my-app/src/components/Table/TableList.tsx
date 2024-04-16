@@ -2,32 +2,39 @@ import React, {useMemo, useState} from 'react';
 import "bootstrap-icons/font/bootstrap-icons.css";
 import styles from './TableList.module.scss'
 import {useStore} from "../../hooks";
-import {deleteItem, sendItem} from "../../store/Actions/actions";
 import {useNavigate} from "react-router-dom";
 import Pagination from "../Pagination/Pagination";
 import {handleDataOnPage} from "../../utils/help";
+import deleteIcon from '../../assets/icon/table/delete.svg';
+import editIcon from '../../assets/icon/table/create_24px.svg'
+import detailIcon from '../../assets/icon/table/visibility_24px.svg';
+import {CURRENT_PAGE, RECORD_INIT, STATUS_API} from "../../constant";
+import {initNavigate} from "../../config";
+import * as cityService from "../../service/cityService";
 
-const TableList = ({dataTable} : any) => {
+const TableList = ({dataTable, fetchApi} : any) => {
     const [state, dispatch] = useStore();
     const navigate = useNavigate();
-    const [currentPage, setCurrentPage] = useState(1);
-    const recordsPerPage = 8;
+    const [currentPage, setCurrentPage] = useState(CURRENT_PAGE);
+    const recordsPerPage = RECORD_INIT;
     const totalPage = Math.ceil(dataTable.length / recordsPerPage);
-    const dataList = handleDataOnPage(currentPage, dataTable, recordsPerPage);
+    const dataList = useMemo(() => (handleDataOnPage(currentPage, dataTable, recordsPerPage)),[currentPage, dataTable]);
     const pageNumbers = Array.from({length: totalPage}, (_, index) => index + 1);
-    const handleRowClick =  async (rowIndex: any, rowData: any, value: string) => {
-        const payload = {
-            ...rowData,
-            id: rowIndex,
-        }
-       await dispatch(sendItem(payload));
-        value === 'detail' ?  navigate('/detail') : navigate('/edit')
+    const handleRowClick = (rowIndex: any, rowData: any, value: string) => {
+        value === 'detail' ?  navigate(`${initNavigate.detail}/${rowIndex}`) : navigate(initNavigate.edit)
     }
-    const handleDeleteCity = (index: number) => {
-        dispatch(deleteItem(index));
+    const handleEditCity = (index: number) => {
+        navigate(`${initNavigate.edit}/${index}`)
+    }
+    const handleDeleteCity = async (index: number) => {
+        const result = await cityService.deleteCity(index);
+        if(result === STATUS_API.SUCCESS[1]) {
+            fetchApi();
+        }
     }
     return (
         <div className={styles.cityTable}>
+            <p>Showing 1-{recordsPerPage} of {dataTable.length} items.</p>
             <table >
                 <thead>
                     <tr>
@@ -41,21 +48,21 @@ const TableList = ({dataTable} : any) => {
                 <tbody>
                     {dataList?.map((value: any, index: number) => (
                         <tr key={index}>
-                            <th>{index}</th>
-                            <th>{value.name}</th>
-                            <th>{value.province}</th>
-                            <th>{value.country}</th>
-                            <th>
-                                <button className={styles.buttonAction} onClick={() => handleRowClick(index, value, 'detail')}>
-                                    <i className="bi bi-eye"></i>
+                            <td>{value.id}</td>
+                            <td>{value.name}</td>
+                            <td>{value.province}</td>
+                            <td>{value.country}</td>
+                            <td className={styles.btnGroup}>
+                                <button className={styles.btnAction} onClick={() => handleRowClick(value._id, value, 'detail')}>
+                                    <img src={detailIcon} alt={"detailIcon"}/>
                                 </button>
-                                <button className={styles.buttonAction} onClick={() => handleRowClick(index, value, 'edit')}>
-                                    <i className="bi bi-pencil"></i>
+                                <button className={styles.btnAction} onClick={() => handleEditCity(value._id)}>
+                                    <img src={editIcon} alt={"editIcon"}/>
                                 </button>
-                                <button className={styles.buttonAction} onClick={() => handleDeleteCity(index)}>
-                                    <i className="bi bi-trash-fill"></i>
+                                <button className={styles.btnAction} onClick={() => handleDeleteCity(value._id)}>
+                                    <img src={deleteIcon} alt={"DeleteIcon"}/>
                                 </button>
-                            </th>
+                            </td>
                         </tr>
                     ))}
                 </tbody>

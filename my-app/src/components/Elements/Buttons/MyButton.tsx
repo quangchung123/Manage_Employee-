@@ -1,13 +1,9 @@
 import React from 'react';
 import { useNavigate } from "react-router-dom";
-const MyButton = ({children,onClick, styleModify, link} : any) => {
-    const navigate = useNavigate();
-    const handleNavigate = (event: any) => {
-        link ? navigate(link) : onClick(event);
-    }
+const MyButton = ({children,onClick, styleModify, link, onSubmit, type="submit"} : any) => {
     return (
         <div>
-             <button onClick={handleNavigate} className={styleModify}>
+             <button onClick={onClick} type={type} className={styleModify}>
                  {children}
              </button>
         </div>

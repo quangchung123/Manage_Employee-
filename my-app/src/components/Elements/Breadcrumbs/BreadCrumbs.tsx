@@ -1,26 +1,26 @@
 import React from 'react';
 import styles from './Breadcrumbs.module.scss';
-
-const Breadcrumbs = ({ crumbs, onCrumbClick }: { crumbs: string[], onCrumbClick: (crumb: string) => void }) => {
-    console.log(onCrumbClick)
+import {useNavigate} from "react-router-dom";
+const BreadCrumbs = ({ crumbs }: any) => {
+    const navigate = useNavigate();
     const isLast = (index: number) => {
         return index === crumbs.length - 1;
     };
-
     return (
         <nav className={styles.Breadcrumbs}>
             <ol>
-                {crumbs.map((crumb: string, ci: number) => {
+                {crumbs.map((crumb: {name: string; url: string}, ci: number) => {
                     const disabled = isLast(ci) ? 'disabled' : '';
                     const showSeparator = !isLast(ci);
+                    const {name, url} = crumb;
                     return (
                         <li key={ci}>
                             <button
                                 className={disabled}
-                                onClick={() => onCrumbClick(crumb)}
+                                onClick={() => navigate(url)}
                                 disabled={isLast(ci)}
                             >
-                                {crumb}
+                                {name}
                             </button>
                             {showSeparator && <span>/</span>}
                         </li>
@@ -31,4 +31,4 @@ const Breadcrumbs = ({ crumbs, onCrumbClick }: { crumbs: string[], onCrumbClick:
     );
 };
 
-export default Breadcrumbs;
+export default BreadCrumbs;

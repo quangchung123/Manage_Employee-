@@ -1,7 +1,6 @@
 import React from 'react';
 import styles from './Label.module.scss';
 const MyLabel = ({nameLabel, nameCity}: any) => {
-    console.log(nameCity)
     return (
         <div className={styles.label}>
             <span>{nameLabel}</span>
@@ -9,5 +8,4 @@ const MyLabel = ({nameLabel, nameCity}: any) => {
         </div>
     );
 };
-
 export default MyLabel;

@@ -1,4 +1,4 @@
-@use "variables";
+@use './variables' as *;
 * {
   margin: 0;
   box-sizing: border-box;
@@ -18,7 +18,7 @@ button {
   font-style: normal;
   border-radius: 1px;
   border: none;
-  color: variables.$text-color-secondary;
+  color: $text-color-secondary;
 }
 button:hover {
   cursor: pointer;
@@ -28,15 +28,32 @@ table {
   border-collapse: collapse;
   width: 100%;
   thead {
-    color: variables.$text-color-third;
-  }
-  td, th {
-    border: 1px solid #ddd;
-    padding: 8px;
+    color: $text-color-third;
+    th {
+      text-align: left;
+    }
   }
   tbody {
     tr:nth-child(odd) {
       background-color: #f2f2f2;
     }
+    th {
+      color: #373A3C;
+      font-weight: 700;
+      font-size: 14px;
+    }
   }
+  td, th {
+    border: 1px solid $border-color;
+    padding: 8px;
+    text-align: left;
+  }
+}
+label {
+  color: #000000;
+  font-weight: 600;
+}
+input {
+  box-sizing: border-box;
+  padding-left: 12px;
 }

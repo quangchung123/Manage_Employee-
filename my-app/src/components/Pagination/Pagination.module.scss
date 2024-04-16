@@ -1,20 +1,25 @@
 @use "../../styles/Common/index" as *;
 .elementPagination {
   display: inline-block;
-  height: 40px;
+  height: 34px;
   margin-top: 10px;
-  border: 1px solid $third-color;
+  border: 1px solid $border-color;
+  border-radius: 5px;
   .buttonPagination {
-    background-color: transparent;
-    width: auto;
-    color: $third-color;
-    border: 1px solid $third-color;
-    opacity: 0.6;
-    @include buttonSelect()
+    @include buttonPagination();
+    @include buttonPaginationSecond();
   }
   .selectedPage {
     color: white;
     background-color: #337AB7;
-    @include buttonSelect()
+    @include buttonPagination()
+  }
+  .unSelectedPage {
+    @include buttonPagination();
+    @include buttonPaginationSecond($opacity: 1,$color: $pagination-color);
+  }
+  .buttonLast {
+    color: $pagination-color;
+    opacity: 1;
   }
 }

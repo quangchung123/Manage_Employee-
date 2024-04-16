@@ -1,27 +1,26 @@
 import _ from 'lodash';
 
 const TableDetail = ({ dataDetail }: any) => {
-    const rowData = _.get(dataDetail, '[0]', {});
     return (
         <div>
             <table>
                 <tbody>
-                <tr>
-                    <th>#</th>
-                    <th>{rowData.id}</th>
-                </tr>
-                <tr>
-                    <th>Name</th>
-                    <th>{rowData.name}</th>
-                </tr>
-                <tr>
-                    <th>Country</th>
-                    <th>{rowData.country}</th>
-                </tr>
-                <tr>
-                    <th>Province</th>
-                    <th>{rowData.province}</th>
-                </tr>
+                    <tr>
+                        <th>#</th>
+                        <td>{dataDetail._id}</td>
+                    </tr>
+                    <tr>
+                        <th>Name</th>
+                        <td>{dataDetail.name}</td>
+                    </tr>
+                    <tr>
+                        <th>Country</th>
+                        <td>{dataDetail.country}</td>
+                    </tr>
+                    <tr>
+                        <th>Province</th>
+                        <td>{dataDetail.province}</td>
+                    </tr>
                 </tbody>
             </table>
         </div>

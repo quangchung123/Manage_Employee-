@@ -1,9 +1,8 @@
 import styles from './Input.module.scss'
-const InputField = ({onChange, value, required} : any) => {
-    console.log(required);
+const InputField = ({onChange, value} : any) => {
     return (
         <div className={styles.inputField}>
-            <input onChange={onChange} value={value} {...(required ? { required: true } : {})}/>
+            <input onChange={onChange} value={value} required />
         </div>
     );
 };
