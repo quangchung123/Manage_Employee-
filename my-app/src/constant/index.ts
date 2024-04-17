@@ -8,3 +8,8 @@ export const STATUS_API = {
 export const ID_INIT = 5;
 export const CURRENT_PAGE = 1;
 export const RECORD_INIT = 10;
+export const BUTTON_ACTION_TYPE = {
+    DELETE_BUTTON: "delete",
+    EDIT_BUTTON: "edit",
+    DETAIL_BUTTON: "detail"
+}

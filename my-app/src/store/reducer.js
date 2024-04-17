@@ -4,7 +4,7 @@ import { handleLoadDataFromStorage } from "../utils/help";
 import {listData} from "../config/listData";
 
 const stateRoot = {
-    data: listData,
+    data: [],
     dataDetail: {}
 }
 const initState = stateRoot

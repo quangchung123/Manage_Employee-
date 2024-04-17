@@ -1,3 +1,8 @@
+import deleteIcon from "../assets/icon/table/delete.svg";
+import editIcon from "../assets/icon/table/create_24px.svg";
+import detailIcon from "../assets/icon/table/visibility_24px.svg";
+import {BUTTON_ACTION_TYPE} from "../constant";
+
 export const initCrumbs = [
     {
         name: "Home",
@@ -22,7 +27,6 @@ export const initCrumbCreate = [
         url: '/create'
     }
 ]
-
 export const initCrumbUpdate = [
     {
         name: "Home",
@@ -43,3 +47,20 @@ export const initNavigate = {
     edit: "/edit",
     detail: "/detail"
 }
+export const buttonActionOptions = [
+    {
+        type: BUTTON_ACTION_TYPE.DETAIL_BUTTON,
+        src: detailIcon,
+        alt: "DetailIcon",
+    },
+    {
+        type: BUTTON_ACTION_TYPE.EDIT_BUTTON,
+        src: editIcon,
+        alt: "EditIcon",
+    },
+    {
+        type: BUTTON_ACTION_TYPE.DELETE_BUTTON,
+        src: deleteIcon,
+        alt: "DeleteIcon",
+    }
+]

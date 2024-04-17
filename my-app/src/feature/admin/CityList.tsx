@@ -24,6 +24,13 @@ const CityList = () => {
         fetchApi();
     }, []);
 
+    const columnCity = [
+        {key: 'id', label: '#'},
+        {key: 'name', label: 'Name'},
+        {key: 'province', label: 'Province'},
+        {key: 'country', label: 'Country'},
+        {key: 'action', label: 'Action'}
+    ]
     return (
         <div className={styles.cityList}>
             <Layout>
@@ -32,7 +39,7 @@ const CityList = () => {
                 <MyButton onClick={() => navigate(initNavigate.create)} styleModify={styles.buttonModify}>
                     <span>Create City</span>
                 </MyButton>
-                <TableList dataTable={data} fetchApi={fetchApi}/>
+                <TableList dataTable={data} fetchApi={fetchApi} columnCity={columnCity}/>
             </Layout>
         </div>
     );
